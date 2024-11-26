@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(170, 172, 225);
+            margin:0;
+            padding: 0;
+        }
+
+        #ToDoList{
+            position: fixed;
+            margin-top: 25%;
+            margin-left: 30%;
+            border: solid 1px rgb(234, 236, 252);
+            border-radius: 8%;
+            width: 35%;
+            height: 70%;
+            transform: translateY(-50%);
+            background-color:#fff
+        }
+
+        #ToDoList .inputBox {
+            top: 10%;
+            width: 100%;
+            position: absolute;
+            background-color: #fff;
+            
+        }
+        .inputBox p{
+            text-align: center;
+            margin: 15px auto;
+            font-weight: bold;
+            font-size: x-large;
+        }
+        .inputBox div{
+            padding: 20px;
+            width: 90%;
+            height: 30%;
+            text-align: center;
+        }
+
+        .inputBox input {
+            margin-right: 4px;
+            width: 15rem;
+            height: 2rem;
+          
+            
+        }
+        .inputBox .addBtn{
+            background-color: rgb(91, 92, 192);
+            width: 3.5rem;
+            height: 3em;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* #ToDoList .list{
+            position: absolute;
+            top: 35%;
+            left: 14%;
+            width: 100%;
+        } */
+         .inputBox .list{
+            padding: 10px;
+            width: 70%;
+            margin: auto 4em;
+
+     
+         }
+
+         .list ul>li{
+            list-style-type:circle;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: left;
+            width: 100%;
+            
+         }
+    
+    </style>
+</head>
+
+<body>
+
+    <div id="ToDoList">
+        <div class="inputBox">
+            <p>To Do List</p>
+           <div>
+            <input type="text" name="name" id="inputWords">
+            <button class="addBtn" onclick="addList()"><i style="color: #fff; font-size: large;">+</i></button>
+           </div>
+
+
+           <div class="list">
+              <ul id="listul">
+                  <!-- <li> coffee </li>
+                  <li> coffee </li>
+                  <li> coffee </li>
+                  <li> coffee </li> -->
+              </ul>
+
+           </div>
+        </div>
+
+       
+    </div>
+    
+</body>
+<script>
+
+    const inputWords = document.getElementById('inputWords');
+    const listUl = document.getElementById('listul');
+
+   // input element click event, get the input value, create a li, then clear the input value.
+   function addList() {
+    
+    let inputValue = inputWords.value;
+    console.log('inputValue:', inputValue);
+    
+
+    if (inputValue != '') {
+        var li= document.createElement('li');
+        li.innerHTML= `${inputValue} <span></span> <img src="./delete.svg"  onclick="removeBtn(this)" style="cursor: pointer; width:18px;">`;
+
+        listUl.appendChild(li)
+        inputWords.value = '';
+    }
+   
+   }
+
+   // use event listner to call click function when press the Enter key
+   inputWords.addEventListener('keydown',function(event){
+        console.log('event.key:',event.key)
+
+        if (event.key === 'Enter') {
+            addList();
+        }
+   });
+
+   // delete li element
+   function removeBtn(value) {
+    console.log('get li child and remove li:', value);
+    value.parentElement.remove();
+
+   }
+
+
+
+
+    
+</script>
+</html>
