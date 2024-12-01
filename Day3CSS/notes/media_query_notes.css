@@ -1,0 +1,34 @@
+/* when all conditions are changed as true, will update relevant element properties */
+/* how to set different styles at differnt devices */
+
+
+@media screen {
+    
+}
+
+@media print {
+    
+}
+
+@media all {
+    
+}
+
+@media all  and (max-width: 500px){
+    
+}
+
+@media all  and (min-width: 500px){
+    
+}
+
+/* Orientation 朝向: Horizontal change 横向改变*/
+@media (orientation: landscape)  and (min-width: 500px){
+    
+}
+
+/* Orientation: vertical change*/
+@media (orientation: portrait)  and (min-width: 500px){
+    
+}
+

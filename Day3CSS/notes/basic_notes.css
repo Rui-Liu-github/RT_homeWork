@@ -1,0 +1,59 @@
+/* 1)what is the css? */
+/* 1: not a programming language */
+/* 2: a styling language */
+/* used for present content and resources */
+
+
+
+/*2) css systax */
+
+/* 1: selector : class, element, id*/
+
+selector {
+    property1: value;
+    property2: value;
+}
+.big-header {property1: value;}
+
+h1{} span{}
+
+#big-header{}
+
+/* 2: selector combinations: big-header is the ancestor, box is a child seletoor below*/
+.big-header .box{}
+
+/* 3: if some selector have same properties, also can combine together */
+.big-header.box.h1{}
+
+/*4: defaults for entire page below */
+*{
+    font-size: large;
+} 
+
+
+/* 3) how to load css */
+/* inline style: write insde the elements, page maybe load slower*/
+/* style element:an html element, defined in the head like a css file, load a little better */
+/* seperate css file: use a seperate css file, and link it to html file*/
+/* <head>
+<link rel="stylesheet" href="style.css"/>
+</head> */
+
+
+/* 4) 
+padding is just the spacing between the content and border
+margin is to space element around other elements
+*/
+
+/* 5) define the sizes: use percentage will take up whatever the percentage of the entire sizer, how much sapck will work with */
+h1{
+   width: 20%;
+   width: 1em; 
+
+   /* 1em -> 16px,  em scales off the parent, if we set the body entire properties, size will be impacted*/
+   /* 1rem -> 16px,  rem doesn't change the size*/
+
+} 
+
+
+/* box-sizing: content-box vs box-sizing: border-box */

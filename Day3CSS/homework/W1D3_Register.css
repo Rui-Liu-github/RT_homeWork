@@ -1,0 +1,89 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #667289;
+    min-height: 100%;
+}
+
+
+#registerTable{
+    /* position: fixed;
+    margin-top: 25%;
+    transform: translateY(-50%);
+    margin-left: 25%; */
+    margin: 10% auto;
+    border: solid 1px #6b7480;
+    width: 40%;
+    height: 600px;
+    background-color: #f2f3f7;
+
+}
+
+div.title,.content,.submit{
+    padding: 20px;
+    width: 76%;
+    text-align: left;
+    margin:0 auto;
+}
+
+div.title{
+    text-align: center !important;
+
+}
+
+div.title span{
+    display: inline-block;
+    background-color:#dadcde;
+    width: 3em;
+    height: 2px;
+    
+    
+}
+
+div.title p{
+    position: relative;
+    top: 6px;
+    font-size: 30px;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/* content start */
+
+div.content input {
+  width: 95%;
+  padding: 10px;
+  display: block;
+
+}
+div.content .name{
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+div.content .name input {
+    width: 40% !important;
+}
+
+
+div.radio{
+    display: flex;
+    justify-content: left;
+}
+
+div.submit button{
+    width: 100%;
+    padding: 14px;
+    font-weight: bolder;
+    background-color: #66a45a;
+    border: solid 0px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+

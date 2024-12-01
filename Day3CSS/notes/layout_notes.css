@@ -1,0 +1,39 @@
+/* flex & grid 在父容器中轻松对齐和分布子元素 Supports both horizontal and vertical alignment.*/
+/* flex container: display: flex */
+/* flex items: aligned along a row or column. */
+
+
+/* VS with " float: left "-> just work horizontal alignment.we need to clear and prevent layout issues  */
+
+.flex-container{
+    /* need to know different kinds of values of justify-content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center; 
+    flex-wrap: wrap;  /* //允许换行排列 */
+    flex-direction: column;
+}
+.flex-item{
+    width: 200px;
+}
+
+.flex1{
+    min-height: 100px;
+    flex-shrink: 0;/* shrink the size is : 0*/
+    order: 1;
+}
+
+.flex2{
+    min-height: 200px;
+    flex-grow: 1; /* the box won and the item taks up all extra sapce nomatter what size is */
+    order: 3;
+}
+
+
+.flex2{
+    min-height: 300px;
+    order: 2;
+    flex-grow: 2; /* the box  taks up all extra twice sapce nomatter what size is */
+    
+}
