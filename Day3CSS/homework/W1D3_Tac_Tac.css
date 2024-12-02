@@ -6,6 +6,7 @@
 
 }
 /* box1, box2, box3 as child, set flex-direction: column;*/
+
 .ticTacBox {
     margin: 10% auto;
     width: 500px;
@@ -29,7 +30,7 @@
 }
 
 /* .box1,.box2,.box3 as parents */
-/* .box1-1, .box1-2, box1-3 as the child of .box1 */
+/* .box1-1, .box1-2, box1-3 as the child of .box1; .box1-2 as the child of .box2... */
 .ticTacBox .box1,.box2,.box3{
     display: flex;
     justify-content: space-around;
