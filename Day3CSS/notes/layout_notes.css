@@ -36,4 +36,8 @@
     order: 2;
     flex-grow: 2; /* the box  taks up all extra twice sapce nomatter what size is */
     
+/* 
+    the order property to individual items. 
+    By default, items have a value of 0, 
+    but we can use this property to also set it to a positive or negative integer value (-2, -1, 0, 1, 2). */
 }

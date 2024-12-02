@@ -5,7 +5,7 @@
     min-height: 100%;
 
 }
-/* box1, box2, box3 as child, set flex-direction: column; 竖直方向*/
+/* box1, box2, box3 as child, set flex-direction: column;*/
 .ticTacBox {
     margin: 10% auto;
     width: 500px;
