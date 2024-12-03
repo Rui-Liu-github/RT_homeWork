@@ -6,6 +6,22 @@ export function myMap(arr, cb) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myMap(arr, num => num * 2);
   // Expected output: [2, 4, 6, 8, 10]
+  
+   // Check if the input is a valid array
+   if (!Array.isArray(arr)) {
+    throw new Error("First argument must be an array");
+  }
+  if (typeof cb !== 'function') {
+    throw new Error("Second argument must be a function");
+  }
+
+  const result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    result.push(cb(arr[i], i, arr)); // Pass element to cb
+  }
+
+  return result;
 }
 
 export function myFilter(arr, cb) {
@@ -14,6 +30,24 @@ export function myFilter(arr, cb) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myFilter(arr, num => num % 2 === 0);
   // Expected output: [2, 4]
+
+   if (!Array.isArray(arr)) {
+    throw new Error("the first argument should be an array");
+  }
+
+  if (typeof cb !== 'function') {
+    throw new Error("the second argument should be a callback function");
+  }
+
+  const result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (cb(arr[i], i, arr)) { // Pass element to  callback
+      result.push(arr[i]); 
+    }
+  }
+
+  return result;
 }
 
 export function myConcat(arr1, arr2) {
@@ -23,6 +57,14 @@ export function myConcat(arr1, arr2) {
   // const arr2 = [4, 5, 6];
   // myConcat(arr1, arr2);
   // Expected output: [1, 2, 3, 4, 5, 6]
+
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+    throw new Error("Both two arguments are array");
+  }
+
+  const result = [...arr1, ...arr2];
+
+  return result;
 }
 
 export function myFind(arr, cb) {
@@ -31,6 +73,22 @@ export function myFind(arr, cb) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myFind(arr, num => num % 2 === 0);
   // Expected output: 2
+
+  if (!Array.isArray(arr)) {
+    throw new Error("the first argument should be an array");
+  }
+  if (typeof cb !== 'function') {
+    throw new Error("the second argument should be a callback function");
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (cb(arr[i], i, arr)) { 
+      return arr[i];
+    }
+  }
+
+  return undefined;
+
 }
 
 export function myEvery(arr, cb) {
@@ -39,6 +97,24 @@ export function myEvery(arr, cb) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myEvery(arr, num => num > 0);
   // Expected output: true
+
+
+  if (!Array.isArray(arr)) {
+    throw new Error("the first argument should be an array");
+  }
+  if (typeof cb !== 'function') {
+    throw new Error("the second argument should be a callback function");
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!cb(arr[i], i, arr)) {
+      return false; 
+    }
+  }
+
+  return true;
+
+
 }
 
 export function mySome(arr, cb) {
@@ -47,6 +123,21 @@ export function mySome(arr, cb) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // mySome(arr, num => num % 2 === 0);
   // Expected output: true
+
+  if (!Array.isArray(arr)) {
+    throw new Error("the first argument should be an array");
+  }
+  if (typeof cb !== 'function') {
+    throw new Error("the second argument should be a callback function");
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (cb(arr[i], i, arr)) { 
+      return true; 
+    }
+  }
+
+  return false;
 }
 
 export function myIncludes(arr, val) {
@@ -55,6 +146,21 @@ export function myIncludes(arr, val) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myIncludes(arr, 3);
   // Expected output: true
+
+  // Validate input arguments
+  if (!Array.isArray(arr)) {
+    throw new Error("the arr argument should be an array");
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === val) {
+      return true; // Return true if the value is found
+    }
+  }
+
+  // If not found, return false
+  return false;
+
 }
 
 export function myJoin(arr, separator) {
@@ -63,6 +169,20 @@ export function myJoin(arr, separator) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myJoin(arr, '-');
   // Expected output: '1-2-3-4-5'
+
+   if (!Array.isArray(arr)) {
+    throw new Error("the arr argument should be an array");
+  }
+
+  let result = '';
+  for (let i = 0; i < arr.length; i++) {
+    result += arr[i]; // Append the element
+    if (i < arr.length - 1) {
+      result += separator; // Append the separator if it's not the last element
+    }
+  }
+
+  return result;
 }
 
 export function myPush(arr, val) {
@@ -71,6 +191,14 @@ export function myPush(arr, val) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myPush(arr, 6);
   // Expected output: [1, 2, 3, 4, 5, 6]
+
+  if (!Array.isArray(arr)) {
+    throw new Error("the arr argument should be an array");
+  }
+
+  arr[arr.length] = val;
+  return arr;
+
 }
 
 export function myReverse1(arr) {
@@ -79,10 +207,45 @@ export function myReverse1(arr) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myReverse(arr);
   // Expected output: [5, 4, 3, 2, 1]
+
+  if (!Array.isArray(arr)) {
+    throw new Error("the argument should be an array");
+  }
+
+  const reversed = [];
+
+  // Iterate over the array in reverse order and add elements to the new array
+  for (let i = arr.length - 1; i >= 0; i--) {
+    reversed.push(arr[i]);
+  }
+
+  // Return the reversed array
+  return reversed;
 }
 
 export function myReverse2(arr) {
   // Same as above but this time returns the original array reference reversed.
+
+  if (!Array.isArray(arr)) {
+    throw new Error("the argument should be an array");
+  }
+
+  // Use two-pointer to reverse the array 
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    // Swap elements
+    const temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+
+    // Move pointers to center
+    left++;
+    right--;
+  }
+
+  return arr;
 }
 
 // Challenges
@@ -92,6 +255,34 @@ export  function myReduce(arr, cb, initial) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // myReduce(arr, (acc, num) => acc + num, 0);
   // Expected output: 15
+
+  if (!Array.isArray(arr)) {
+    throw new Error("the first argument must be an array");
+  }
+  if (typeof cb !== 'function') {
+    throw new Error("the second argument must be a function");
+  }
+
+  // Initialize the accumulator
+  let accumulator = initial;
+  let startIndex = 0;
+
+  // If no initial value provided, use the first element of the array as the initial value
+  if (accumulator === undefined) {
+    if (arr.length === 0) {
+      throw new Error("Reduce of empty array with no initial value");
+    }
+    accumulator = arr[0];
+    startIndex = 1; // Start from the second element
+  }
+
+  // Iterate over the array and apply the callback
+  for (let i = startIndex; i < arr.length; i++) {
+    accumulator = cb(accumulator, arr[i], i, arr);
+  }
+
+  // Return the final accumulated value
+  return accumulator;
 }
 
 export function mySort(arr, cb) {
@@ -100,6 +291,30 @@ export function mySort(arr, cb) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // mySort(arr, (a, b) => a - b);
   // Expected output: [1, 2, 3, 4, 5]
+
+  if (!Array.isArray(arr)) {
+    throw new Error("the frst argument must be an array");
+  }
+  if (typeof cb !== 'function') {
+    throw new Error("the second argument must be a function");
+  }
+
+  const sortedArray = [...arr];
+
+  // Bubble Sort 
+  for (let i = 0; i < sortedArray.length - 1; i++) {
+    for (let j = 0; j < sortedArray.length - i - 1; j++) {
+      // Use callback to compare elements
+      if (cb(sortedArray[j], sortedArray[j + 1]) > 0) {
+        // Swap elements when they are in the wrong order
+        const temp = sortedArray[j];
+        sortedArray[j] = sortedArray[j + 1];
+        sortedArray[j + 1] = temp;
+      }
+    }
+  }
+
+  return sortedArray;
 }
 
 export function mySlice(arr, start, end) {
@@ -108,4 +323,25 @@ export function mySlice(arr, start, end) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // mySlice(arr, 1, 3);
   // Expected output: [2, 3]
+
+
+   // Validate input
+  if (!Array.isArray(arr)) {
+    throw new Error("the first argument must be an array");
+  }
+
+  const len = arr.length;
+  end = end === undefined ? len : end;
+  
+  // Normalize start and end indices
+  const normalizedStart = start < 0 ? Math.max(len + start, 0) : Math.min(start, len);
+  const normalizedEnd = end < 0 ? Math.max(len + end, 0) : Math.min(end, len);
+
+  const result = [];
+
+  for (let i = normalizedStart; i < normalizedEnd; i++) {
+    result.push(arr[i]);
+  }
+
+  return result;
 }

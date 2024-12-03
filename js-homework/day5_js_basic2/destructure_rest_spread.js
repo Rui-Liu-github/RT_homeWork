@@ -8,6 +8,8 @@ export function destructurePerson1() {
     job: "teacher",
   };
   // Write your code here
+  const { name, age, job } = person;
+  console.log(`${name} is ${age} years old and is a ${job}`);
 }
 
 export function destructurePerson2() {
@@ -23,6 +25,8 @@ export function destructurePerson2() {
     },
   };
   // Write your code here
+  const { name, age, address } = person;
+  console.log(`${name} is ${age} years old and lives in ${address.city}`);
 }
 
 export function destructurePerson3() {
@@ -39,7 +43,10 @@ export function destructurePerson3() {
   };
 
   // Write your code here
+  const { name: personName, age: personAge, job: personJob } = person;
+  console.log(`Person's name is ${personName}, age is ${personAge}, and job is ${personJob}`);
 }
+
 
 export function destructurePerson4() {
   const person = {
@@ -87,6 +94,9 @@ export function destructureArray3() {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   // destructure the first 3 elements, and use rest operator to get the rest of the elements
   // Write your code here
+  const [first, second, third, ...rest] = arr;
+  console.log(`First: ${first}, Second: ${second}, Third: ${third}`);
+  console.log(`Rest: ${rest}`);
 }
 
 export function spreadObj() {
@@ -96,13 +106,13 @@ export function spreadObj() {
     job: "teacher",
   };
   // 1. use spread operator to create a new object with the same properties as person
-  // const person1 =
+  const person1 = { ...person };
 
   // 2. step 1, but change the name to "Bob"
-  // const person2 =
+  const person2 = { ...person, name: "Bob" };
 
   // 3. step 1, but add a new property, hobby: "reading"
-  // const person3 =
+  const person3 = { ...person, hobby: "reading" };
 
   const additionalInfo = {
     salary: 50000,
@@ -110,19 +120,29 @@ export function spreadObj() {
     favFood: "pizza",
   };
   // 4. use spread operator to merge the additionalInfo object with the person object
-  // const person4 =
+  const person4 = { ...person, ...additionalInfo };
+
+  console.log("person1:", person1);
+  console.log("person2:", person2);
+  console.log("person3:", person3);
+  console.log("person4:", person4);
 }
 
 export function spreadArr() {
   const arr1 = [1, 2, 3];
   const arr2 = [4, 5, 6];
   // 1. use spread operator to create a new array that combines arr1 and arr2
-  // const arr3 =
+  const arr3 = [...arr1, ...arr2];
 
   // 2. use spread operator to create a new array that combines arr1 and arr2, but add a new element, 7
   // expected arr4: [1, 2, 3, 4, 5, 6, 7]
-  // const arr4 =
+  const arr4 = [...arr1, ...arr2, 7];
 
   // 3. combine arr1 and arr2, but add a new element, 0, at the beginning
-  // expected arr5: [0, 1, 2, 3, 4, 5, 6]
+  const arr5 = [0, ...arr1, ...arr2];
+
+
+  console.log("arr3:", arr3); 
+  console.log("arr4:", arr4); 
+  console.log("arr5:", arr5); 
 }
