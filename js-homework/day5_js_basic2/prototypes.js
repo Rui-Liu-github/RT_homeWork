@@ -3,9 +3,7 @@
 export function myMap(arr, cb) {
   // Write a function that takes an array and a callback as arguments
   // and returns a new array with the callback applied to each element.
-  // Example: const arr = [1, 2, 3, 4, 5];
   // myMap(arr, num => num * 2);
-  // Expected output: [2, 4, 6, 8, 10]
   
    // Check if the input is a valid array
    if (!Array.isArray(arr)) {
@@ -27,9 +25,7 @@ export function myMap(arr, cb) {
 export function myFilter(arr, cb) {
   // Write a function that takes an array and a callback as arguments
   // and returns a new array with only the elements that return a truthy value.
-  // Example: const arr = [1, 2, 3, 4, 5];
   // myFilter(arr, num => num % 2 === 0);
-  // Expected output: [2, 4]
 
    if (!Array.isArray(arr)) {
     throw new Error("the first argument should be an array");
@@ -42,7 +38,7 @@ export function myFilter(arr, cb) {
   const result = [];
 
   for (let i = 0; i < arr.length; i++) {
-    if (cb(arr[i], i, arr)) { // Pass element to  callback
+    if (cb(arr[i], i, arr)) { // Pass element to  callback, if true
       result.push(arr[i]); 
     }
   }
@@ -57,7 +53,7 @@ export function myConcat(arr1, arr2) {
   // const arr2 = [4, 5, 6];
   // myConcat(arr1, arr2);
   // Expected output: [1, 2, 3, 4, 5, 6]
-
+  // use spread operator:  (...)
   if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
     throw new Error("Both two arguments are array");
   }
@@ -148,7 +144,7 @@ export function myIncludes(arr, val) {
   // Expected output: true
 
   // Validate input arguments
-  if (!Array.isArray(arr)) {
+  if (!Array.isArray(arr) || arr.length == 0) {
     throw new Error("the arr argument should be an array");
   }
 
@@ -262,27 +258,25 @@ export  function myReduce(arr, cb, initial) {
   if (typeof cb !== 'function') {
     throw new Error("the second argument must be a function");
   }
+  if (arr.length === 0) {
+    throw new Error("Reduce of empty array with no initial value");
+  }
 
   // Initialize the accumulator
-  let accumulator = initial;
+  let currNum = initial;
   let startIndex = 0;
 
   // If no initial value provided, use the first element of the array as the initial value
-  if (accumulator === undefined) {
-    if (arr.length === 0) {
-      throw new Error("Reduce of empty array with no initial value");
-    }
-    accumulator = arr[0];
-    startIndex = 1; // Start from the second element
+  if (currNum === undefined) {
+    currNum = arr[0];
+    startIndex++; 
   }
 
-  // Iterate over the array and apply the callback
   for (let i = startIndex; i < arr.length; i++) {
-    accumulator = cb(accumulator, arr[i], i, arr);
+    currNum = cb(currNum, arr[i], i, arr);
   }
 
-  // Return the final accumulated value
-  return accumulator;
+  return currNum;
 }
 
 export function mySort(arr, cb) {
@@ -304,9 +298,10 @@ export function mySort(arr, cb) {
   // Bubble Sort 
   for (let i = 0; i < sortedArray.length - 1; i++) {
     for (let j = 0; j < sortedArray.length - i - 1; j++) {
-      // Use callback to compare elements
+      // Use callback to compare adjacent elements in the inner loop
+      // the last i elements are already sorted
       if (cb(sortedArray[j], sortedArray[j + 1]) > 0) {
-        // Swap elements when they are in the wrong order
+        // Swap elements 
         const temp = sortedArray[j];
         sortedArray[j] = sortedArray[j + 1];
         sortedArray[j + 1] = temp;
@@ -323,6 +318,7 @@ export function mySlice(arr, start, end) {
   // Example: const arr = [1, 2, 3, 4, 5];
   // mySlice(arr, 1, 3);
   // Expected output: [2, 3]
+  //expect(mySlice(arr, -2)).toEqual([4, 5]);
 
 
    // Validate input

@@ -56,14 +56,14 @@ console.log(counter.getValue());  // Outputs: 2
 // store.store("add", (a, b) => a + b);
 // console.log(store.run("add", 5, 7)); // Outputs: 12
 export function functionStore() {
-    let store = {};
+    let storeObj = {};
     return {
         store: function(key, fn) {
-            store[key] = fn;
+            storeObj[key] = fn;
         },
         run: function(key, ...args) {
-           if (store[key]) {
-            return store[key](...args); // call the fn
+           if (storeObj[key]) {
+            return storeObj[key](...args); // call the fn
            } 
         }
     }
@@ -91,7 +91,6 @@ export function createPerson(name) {
         },
         setName: function(newName) {
             currName = newName;
-
             return `${currName}`;
         }
     }
@@ -112,11 +111,6 @@ console.log(person.getName());  // Outputs: "Bob"
 //   console.log("Hello!");
 // }
 
-// let limitedHello = createLimitedCallFunction(sayHello, 3);
-// limitedHello(); // Outputs: "Hello!"
-// limitedHello(); // Outputs: "Hello!"
-// limitedHello(); // Outputs: "Hello!"
-// limitedHello(); // No output, subsequent calls are ignored
 
 export function createLimitedCallFunction(fn, limit) {
     let count = 0;
@@ -131,6 +125,7 @@ export function createLimitedCallFunction(fn, limit) {
 let limitedHello = createLimitedCallFunction(sayHello, 3);
 limitedHello(); // Outputs: "Hello!"
 limitedHello(); // Outputs: "Hello!"
+limitedHello(); // Outputs: "Hello!"
 limitedHello(); // No output, subsequent calls are ignored
 
 
@@ -140,15 +135,12 @@ limitedHello(); // No output, subsequent calls are ignored
 // will invoke the original function only if a certain amount of time (interval in milliseconds)
 // has passed since the last invocation. The limit parameter should specify how many times the function
 // can be triggered within the given interval.
+//在每个一定的时间段内 执行有限的次数
+//使用event loop
 
 function logMessage(message) {
   console.log(message);
 }
-
-// let limitedLog = createRateLimiter(logMessage, 2, 10000); // Allow 2 calls every 10 seconds
-// limitedLog("Hello"); // "Hello" is logged
-// limitedLog("World"); // "World" is logged
-// limitedLog("Again"); // This call is ignored
 
 export function createRateLimiter(fn, limit, interval) {
     let count = 0; 
@@ -156,11 +148,11 @@ export function createRateLimiter(fn, limit, interval) {
 
     // Reset the call count after each interval
     setInterval(() => {
-        count = 0;
+        count = 0; //every interval , change it into 0
         while (count < limit && queue.length > 0) {
-            const { args, context } = queue.shift();
+            const { args, context } = queue.shift();// remove the first element from the queue
             count++;
-            fn.apply(context, args);
+            fn.apply(args, context);
         }
     }, interval);
 
@@ -168,9 +160,9 @@ export function createRateLimiter(fn, limit, interval) {
         if (count < limit) {
             count++;
             fn(...args); // Execute immediately if under the limit
-        } else {
-            queue.push({ args, context: this }); // Add to the queue
         }
+            queue.push({ args, context: this }); // Add to the queue
+        
     };
 }
 

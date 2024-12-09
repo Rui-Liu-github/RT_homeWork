@@ -22,6 +22,8 @@ export default class Order {
       this.pizzas.splice(index, 1);
     }
   }
+  //index is dangerous, we cannot use it directly. maybe we can get a id, in the future
+  //use the filter function to remove the id pizza
 
   getTotalCost() {
     let sum = 0;

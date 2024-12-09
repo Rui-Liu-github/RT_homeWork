@@ -9,11 +9,6 @@
 // size: "small", "medium", "large"
 // their costs: 6.5, 7.5, 8.5
 
-// Example toppingCodes
-// {
-//   p: { cost: 1.5, name: "pepperoni" },
-//   g: { cost: 0.86, name: "green pepper" },
-// };
 
 export const BASE_PRICE = {
   small: 6.5,
@@ -51,15 +46,27 @@ export default class Pizza {
     }
     return totalCost;
   }
+// Example toppingCodes
+// {
+//   p: { cost: 1.5, name: "pepperoni" },
+//   g: { cost: 0.86, name: "green pepper" },
+// };
 
+// export const TOPPINGS = {
+//   p: { cost: 1.5, name: "pepperoni" },
+//   g: { cost: 0.86, name: "green pepper" },
+//   o: { cost: 0.5, name: "onion" },
+//   bo: { cost: 0.2, name: "black olive" },
+//   m: { cost: 0.82, name: "mushroom" },
+//   c: { cost: 0.77, name: "cheese" },
+// };
   getDescription() {
     //"A {size} pizza with {topping1}, {topping2}, {topping3}."
     // const topping = this.toppingCodes
     // .map((toppingCode) => TOPPINGS.toppingCode ? TOPPINGS.toppingCode.name : undefined)
-    const toppingsNames = this.toppingCodes
-    .map((code) => TOPPINGS[code]?.name) 
+    const toppingsNames = this.toppingCodes.map((letter) => TOPPINGS[letter].name) 
     .filter(Boolean) // Remove undefined (invalid codes)
-    .join(", "); // Join names with a comma
-     return `A ${this.size} pizza with ${toppingsNames || "no toppings"}.`;
+    .join(", "); // Join all names with a comma
+     return `A ${this.size} pizza with ${toppingsNames || "no topping"}.`;
   }
 }

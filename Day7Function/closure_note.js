@@ -92,7 +92,7 @@ function throttle(func, limit) {
     };
 }
 
-const logThrottle = throttle(() => console.log("Throttled!"), 2000);
+// const logThrottle = throttle(() => console.log("Throttled!"), 2000);
 // logThrottle(); // Will only log at most once every 2 seconds
 
 
