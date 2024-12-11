@@ -1,0 +1,12 @@
+.App {
+    text-align: center;
+    margin:100px auto;
+    width:100%;
+    
+}
+
+.UnClickBtn {
+    cursor:pointer;
+    margin: auto;
+}
+

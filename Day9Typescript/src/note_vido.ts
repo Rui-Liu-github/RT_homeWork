@@ -19,9 +19,10 @@ const f:null = null;
 const g:undefined = undefined;
 let level; //any type
 
-function sayHi(name:number) {
-
+function sayHi(author:number) {
+    return author;
 }
+sayHi(10)
 //4:
 //create a empty array
 let numbers: number[] = []; // const arr1:Array<number> = [];
@@ -48,7 +49,7 @@ console.log(SizeThree.Medium)//m
 
 //7: function
 
-function calculateTax(income:number):number {
+function calculateTax():number {
     
     return 0;//return value must be a number type;
 }
@@ -100,7 +101,7 @@ let employee4:{
  };
 
  //9: advanced types
- //type aliases: to reuse types and simplify your code
+ //type aliases: to reuse types and simplify code
  //use unions and intersections: to combine types 
  //type narrowing  
  //nullable types
@@ -124,3 +125,61 @@ let employee4:{
   }
 
   console.log(employee5)
+
+  // //use unions and intersections: 
+  //union type method:give a function parameter more than on type (combining types)
+  function kgToLbs(weight:number | string): number{
+    //annotate the return type
+    //use type narrowing technic
+    if (typeof weight === 'number') {
+        return weight * 2;
+    } else {
+       // weight. // get wll string methods here
+        return parseInt(weight) * 2;
+    }
+
+  }
+
+  kgToLbs(10);
+  kgToLbs('10kg')
+
+  //intersections type
+type Draggable = {
+    drag:()=> void;
+}
+
+type Resizable = {
+    resize:()=> void;
+}
+
+type UIWidget = Draggable & Resizable;
+
+let textBox:UIWidget = {
+    drag: ()=> {},
+    resize:()=>{}
+}
+
+//literal type
+type Metric = 'cm' | 'inch';
+
+type Quantity = 50 | 100;
+let quantity:Quantity = 100;
+
+//nullable types
+function greet(name: string | null | undefined) {
+    if(name) {
+        console.log(name);
+    } else {
+        console.log('Hole');
+    }
+}
+
+// greet(null) // type null is not assigned to the paramer
+//use union method
+greet(null)
+greet(undefined)
+
+ //unknown types
+ 
+
+ //never types 
