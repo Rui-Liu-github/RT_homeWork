@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React from 'react';
 import { RouterProvider } from "react-router-dom";
 import routerConfig from "./router";
 // import './App.css';

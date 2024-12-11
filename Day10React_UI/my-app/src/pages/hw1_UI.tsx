@@ -35,6 +35,7 @@ const HwOne: FC = () => {
         margin:'20px auto',
         display:'block',
         padding:'10px',
+        cursor:'pointer',
         backgroundColor:'pink'
 
       }}
