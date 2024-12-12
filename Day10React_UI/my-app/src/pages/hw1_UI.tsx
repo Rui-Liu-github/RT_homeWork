@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import '../styles/hw.css';
 
 import { useNavigate } from 'react-router-dom';
-import { HW_NOTE } from '../router';
+import { HW_NOTE, LC_One} from '../router';
 
 
 const HwOne: FC = () => {
@@ -30,16 +30,10 @@ const HwOne: FC = () => {
       </button>
 
       <ShowOrHideCon />
-      <button 
-      style={{
-        margin:'20px auto',
-        display:'block',
-        padding:'10px',
-        cursor:'pointer',
-        backgroundColor:'pink'
+      
+      <button onClick={()=> nav(HW_NOTE)} className='demoBtn'>To My Note Page</button>
 
-      }}
-      onClick={()=> nav(HW_NOTE)}>To My Note Page</button>
+      <button onClick={()=> nav(LC_One)} className='demoBtn'>To Live Coding</button> 
 
     </div>
   );

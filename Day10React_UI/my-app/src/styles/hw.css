@@ -10,3 +10,10 @@
     margin: auto;
 }
 
+.demoBtn{
+    margin:20px auto;
+    display:block;
+    padding:10px;
+    cursor:pointer;
+    background-color:pink;
+}

@@ -30,8 +30,15 @@ const DemoNoteOne:FC = () =>{
             <UserDemo />
 
             <UserDemoTWO userName={name} age ='100'  email='ruiliu@ruiliu.com' />
-        
+            
+            {/* create a input, and event handle  */}
             <AgeCheck />
+
+            {/* render a array list */}
+            <RenderList />
+
+            {/* render a object list */}
+            <RenderObj />
         
         </div>
     )
@@ -92,6 +99,7 @@ const AgeCheck:FC = ()=> {
 
     return (
         <div>
+            <p>create a input, and type you age</p>
             <input 
             onChange={(e)=> {
                 let inputAge = parseInt(e.target.value, 10);
@@ -105,13 +113,80 @@ const AgeCheck:FC = ()=> {
     )
 }
 
-//
+//4: rendering lists
+//render array
+const RenderList:FC = ()=>{
+    const nameLists:string[] = ["Alice", "Bob", "Charlie", "Diana", "Eve"];
+
+    return (
+        <div>
+            <p>rendering lists using map()</p>
+            <ul>
+                {nameLists.map((name:string, key:number) => {
+                    return <ChildList name={name} key={key}/>
+                })}
+            </ul>
+        </div>
+    )
+}
+
+interface childProps{
+    name:string,
+    key:number,
+}
+const ChildList:FC<childProps>= (props) => {
+    return (
+        <li>{props.name}</li>
+    )
+}
+
+// rendering objects
+const userObjects = [
+    {
+      id: 1,
+      name: "Alice",
+      age: 25,
+      email: "alice@example.com"
+    },
+    {
+      id: 2,
+      name: "Bob",
+      age: 32,
+      email: "bob@example.com"
+    },
+    {
+      id: 3,
+      name: "Charlie",
+      age: 29,
+      email: "charlie@example.com"
+    }
+  ];
+
+  const RenderObj:FC = () => {
+    return (
+        <div>
+            <p>create a object lists and using map()</p>
+            {userObjects.map((user, key) => {
+                return <ChildObj  id= {user.id} age={user.age} name={user.name}/>
+            })}
+        </div>
+    )
+  }
+  
+   interface objListsProps {
+        id:number,
+        name:string,
+        age:number
+   }
+
+    const ChildObj:FC<objListsProps>= (props) => {
+        return (
+            <div>{props.id}:{props.name}:{props.age}</div>
+        )
+    }
 
 
-
-
-
-
+//4: 
 
 
 export default DemoNoteOne;
