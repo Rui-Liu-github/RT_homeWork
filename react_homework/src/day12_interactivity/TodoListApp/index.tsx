@@ -51,7 +51,7 @@ export default function TodoListApp() {
           onChange={(e) => setTask(e.target.value)}
           style={{
             width: "100%",
-            padding: "6px",
+            padding: "10px",
             display: "block",
             marginBottom: "10px",
           }}
@@ -59,8 +59,8 @@ export default function TodoListApp() {
         />
         <button
           style={{
-            padding: "4px",
-            backgroundColor: "black",
+            padding: "8px",
+            backgroundColor: "orange",
             color: "#fff",
             position: "absolute",
             left: "0",

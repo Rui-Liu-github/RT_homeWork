@@ -18,9 +18,9 @@
   border: 1px solid #c0c5ca;
 }
 
-.task-item:last-child {
+/* .takeItem:last-child {
   border-bottom: none; /* Remove border for the last item */
-}
+} */
 
 .taskName {
   font-size: 16px;
@@ -38,4 +38,5 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  background-color: #15743b;
 }
