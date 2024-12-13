@@ -86,7 +86,7 @@ const UserDemoTWO: FC<UserDemoProps> = (props) => {
 //show different content when enter different age
 
 const AgeCheck:FC = ()=> {
-    const [age, setAge] = useState<number | null>(null);
+    const [age, setAge] = useState<number| null>(null);
     const [contentTip, setContentTip] = useState<JSX.Element | null>(null);//let contentTip: any = null;
     
     function handleClick():void {
