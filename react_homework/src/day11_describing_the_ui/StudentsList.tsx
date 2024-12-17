@@ -1,5 +1,5 @@
-import { Component } from "react";
-import { StudentType, StudentFn, StudentClass } from "./Student";
+import { Component, FC } from "react";
+import { StudentType, StudentFn, StudentClass, Grade } from "./Student";
 
 /*
     implement a StudentsList component here
@@ -9,12 +9,65 @@ import { StudentType, StudentFn, StudentClass } from "./Student";
 */
 
 // implement a StudentsList component here
-export function StudentsListFn() {
-  return <div>Students List</div>;
+interface StudentsListProps {
+  students: StudentType[];
 }
 
-export class StudentsListClass extends Component {
+export const StudentsListFn: FC<StudentsListProps> = ({
+  students,
+}: StudentsListProps) => {
+  return (
+    <div>
+      <h1>Students List</h1>
+      {students.map((student) => {
+        return (
+          <div key={student.id} data-testid="student">
+            <p>
+              <strong>ID:</strong> {student.id}
+            </p>
+            <p>
+              <strong>Name:</strong> {student.name}
+            </p>
+            <p>
+              <strong>Age:</strong> {student.age}
+            </p>
+            <p>
+              <strong>Grade:</strong> {student.grade}
+            </p>
+            <hr />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export class StudentsListClass extends Component<StudentsListProps> {
   render() {
-    return <div>Students List</div>;
+    const { students } = this.props;
+    return (
+      <div>
+        <h1>Students List</h1>
+        {students.map((student) => {
+          return (
+            <div key={student.id} data-testid="student">
+              <p>
+                <strong>ID:</strong> {student.id}
+              </p>
+              <p>
+                <strong>Name:</strong> {student.name}
+              </p>
+              <p>
+                <strong>Age:</strong> {student.age}
+              </p>
+              <p>
+                <strong>Grade:</strong> {student.grade}
+              </p>
+              <hr />
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 }

@@ -15,9 +15,7 @@ export default function Checkbox() {
       [name]: checked,
     }));
   };
-
-  // useEffect(() => console.log(checkedState), [handleChange]); // check the status
-
+  useEffect(() => console.log(checkedState), [handleChange]); // check the updated status
   return (
     <div>
       <form>

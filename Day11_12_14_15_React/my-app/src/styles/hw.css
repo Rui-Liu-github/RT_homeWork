@@ -1,0 +1,90 @@
+.App {
+  text-align: center;
+  margin: 100px auto;
+  width: 100%;
+}
+
+.UnClickBtn {
+  cursor: pointer;
+  margin: auto;
+}
+
+.demoBtn {
+  margin: 20px auto;
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  background-color: pink;
+}
+
+.contentBox {
+  width: 500px;
+  margin: 100px auto;
+  /* background-color: pink; */
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table {
+  border-collapse: collapse;
+  border: solid 1px;
+}
+
+.table th {
+  border: 1px solid black;
+  padding: 20px;
+  text-align: center;
+}
+
+.table span {
+  padding: 10px 15px;
+  background-color: pink;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.calculate button {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+/* tic tac */
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 80px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 80px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}

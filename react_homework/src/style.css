@@ -19,9 +19,9 @@
 }
 
 /* .takeItem:last-child {
-  border-bottom: none; /* Remove border for the last item */
-} */
-
+  border-bottom: none; 
+  /* Remove border for the last item */
+/* } */
 .taskName {
   font-size: 16px;
   font-weight: bold;
