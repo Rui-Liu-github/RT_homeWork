@@ -8,6 +8,7 @@ import {
   HW_DAY_11,
   LC_One,
   HW_NOTE,
+  TODO_LIST,
 } from "../router";
 
 function Home() {
@@ -28,6 +29,9 @@ function Home() {
       </h2>
       <h2>
         <Link to={LC_One}>To Live coding page</Link>
+      </h2>
+      <h2>
+        <Link to={TODO_LIST}>To Do List</Link>
       </h2>
       <h2>
         <Link to={HW_NOTE}>To my note page</Link>

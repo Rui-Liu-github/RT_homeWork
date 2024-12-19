@@ -88,3 +88,41 @@
 .game-info {
   margin-left: 20px;
 }
+
+/* to do list */
+
+.list {
+  margin-top: 60px;
+  max-width: 500px;
+}
+
+.takeItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  border: 1px solid #c0c5ca;
+}
+
+/* .takeItem:last-child {
+  border-bottom: none; 
+  /* Remove border for the last item */
+/* } */
+.taskName {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.takeActions {
+  display: flex;
+  gap: 8px; /* Space between buttons */
+}
+
+.takeActions button {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #15743b;
+}

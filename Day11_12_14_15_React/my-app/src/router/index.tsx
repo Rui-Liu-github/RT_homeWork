@@ -9,6 +9,7 @@ import DisplayCheckBox from "../pages/Day14_15_homework/DisplayForm";
 import ShopingCart from "../pages/Day14_15_homework/ShopingCart";
 import TicTac from "../pages/Day14_15_homework/Tic_Tac";
 import Home from "../pages/Home";
+import TodoListApp from "../pages/day12_interactivity/TodoListApp";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
         path: "/tic_tac_hw_14",
         element: <TicTac />,
       },
+      {
+        path: "/to_do_list",
+        element: <TodoListApp />,
+      },
+
       {
         path: "/button_hw_11",
         element: <HwOne />,
@@ -55,7 +61,8 @@ export default router;
 export const HOME_PATHNAME = "/";
 export const HW_NOTE = "/noteOne";
 export const LC_One = "/liveCode_dayOne";
-export const HW_DAY_11 = "./button_hw_11";
+export const HW_DAY_11 = "/button_hw_11";
 export const TIC_TAC = "/tic_tac_hw_14";
 export const FORM_CHECKBOX_14 = "/form_hw_14";
 export const SHOPPING_CART = "/shoping_cart_hw_14";
+export const TODO_LIST = "/to_do_list";
