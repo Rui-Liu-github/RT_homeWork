@@ -48,7 +48,7 @@ type CheckedOptionsType = {
   [key: number]: string; // Keys are numbers, values are strings
 };
 
-function LiveCoding() {
+function SimpleQuizProject() {
   // const [checkedOption, setCheckedOption] = useState(""); this will be lead to a problem
   //must have all options status
   const [checkedOptions, setCheckedOptions] = useState<CheckedOptionsType>({
@@ -164,4 +164,4 @@ function LiveCoding() {
   );
 }
 
-export default LiveCoding;
+export default SimpleQuizProject;

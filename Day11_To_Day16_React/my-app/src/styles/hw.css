@@ -126,3 +126,17 @@
   cursor: pointer;
   background-color: #15743b;
 }
+
+/* login */
+.takeInputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  margin-bottom: 5px;
+}
+
+.takeInputs input {
+  display: inline-block;
+  margin-left: 20px;
+}

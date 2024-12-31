@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import "../styles/hw.css";
 
 import { useNavigate } from "react-router-dom";
-import { HW_NOTE, LC_One } from "../router";
+import { HW_NOTE, SIMPLE_QUIZ_PROJECT } from "../router";
 
 const HwOne: FC = () => {
   const nav = useNavigate();
@@ -38,7 +38,7 @@ const HwOne: FC = () => {
         To My Note Page
       </button>
 
-      <button onClick={() => nav(LC_One)} className="demoBtn">
+      <button onClick={() => nav(SIMPLE_QUIZ_PROJECT)} className="demoBtn">
         To Live Coding
       </button>
     </div>
