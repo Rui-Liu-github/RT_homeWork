@@ -7,6 +7,7 @@ import {
   deleteTodo,
   toggleEdit,
   editTodo,
+  updateSelectTodo,
 } from "../Day17_18homework/todosSlice";
 
 // import {
@@ -23,18 +24,15 @@ const TodoList_Redux: FC = () => {
   const [task, setTask] = useState<string>("");
   //rootState is the top level state
   //rootState {todos, ...}
+
   const todos = useSelector((state: RootState) => state.todos.todos);
   const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    //dispatch(addTodo("add task one"));
-    //trim() This ensures that empty or whitespace-only input (like " ") will not be added to your todo list.
-    if (task.trim()) {
-      dispatch(addTodo(task));
-      // dispatch(addToDoTask(task));
-      setTask(""); // Clear input after adding a task
-    }
+    dispatch(addTodo(task));
+    // dispatch(addToDoTask(task));
+    setTask(""); // Clear input after adding a task
   };
 
   const handleDelete = (id: number) => {
@@ -50,8 +48,15 @@ const TodoList_Redux: FC = () => {
   function handleListUpdate(id: number, e: any) {
     const newToDo = e.target.value;
 
-    dispatch(editTodo({ id: id, task: newToDo }));
+    dispatch(editTodo({ id, task: newToDo }));
     // dispatch(updateTask({ id: id, task: newToDo }));
+  }
+
+  function handleCheckBoxChange(e: any) {
+    // console.log(e.target.id);
+    console.log(e.target.checked);
+    const { id, checked } = e.target;
+    dispatch(updateSelectTodo({ id, checked }));
   }
 
   return (
@@ -102,27 +107,44 @@ const TodoList_Redux: FC = () => {
               marginBottom: "5px",
             }}
           >
+            {/* checkbox select */}
+            <input
+              type="checkBox"
+              id={todo.id.toString()}
+              name={todo.task}
+              checked={todo.completed}
+              onChange={handleCheckBoxChange}
+            />
+            {/* task content */}
             {todo.isEdit ? (
               <input
                 type="text"
                 defaultValue={todo.task}
                 onChange={(e) => handleListUpdate(todo.id, e)}
                 style={{
-                  width: "70%",
-                  marginRight: "10px",
+                  width: "60%",
+                  marginRight: "8px",
                   padding: "5px",
                 }}
               />
             ) : (
-              <span>{todo.task}</span>
+              <span
+                style={{
+                  textDecoration: todo.completed ? "line-through" : "none",
+                  color: todo.completed ? "gray" : "black",
+                }}
+              >
+                {todo.task}
+              </span>
             )}
             <div>
               <button
                 onClick={() => handleDelete(todo.id)}
+                disabled={todo.completed ? true : false}
                 style={{
                   marginRight: "5px",
                   padding: "5px",
-                  backgroundColor: "red",
+                  backgroundColor: todo.completed ? "gray" : "#da4f7a",
                   color: "white",
                   cursor: "pointer",
                 }}
@@ -131,9 +153,10 @@ const TodoList_Redux: FC = () => {
               </button>
               <button
                 onClick={() => handleEdit(todo.id)}
+                disabled={todo.completed ? true : false}
                 style={{
                   padding: "5px",
-                  backgroundColor: "green",
+                  backgroundColor: todo.completed ? "gray" : "green",
                   color: "white",
                   cursor: "pointer",
                 }}

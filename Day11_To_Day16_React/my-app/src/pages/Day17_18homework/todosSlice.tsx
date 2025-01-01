@@ -4,6 +4,7 @@ interface TodoType {
   id: number;
   task: string;
   isEdit: boolean;
+  completed: boolean;
 }
 
 interface StateType {
@@ -11,7 +12,14 @@ interface StateType {
 }
 
 const initialState: StateType = {
-  todos: [],
+  todos: [
+    {
+      id: Date.now(),
+      task: "this is the first todo task,just as test",
+      isEdit: false,
+      completed: false,
+    },
+  ],
 };
 
 const todosSlice = createSlice({
@@ -23,12 +31,14 @@ const todosSlice = createSlice({
         id: Date.now(),
         task: action.payload,
         isEdit: false,
+        completed: false,
       });
     },
     deleteTodo: (state, action: PayloadAction<number>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
     toggleEdit: (state, action: PayloadAction<number>) => {
+      //find() is really good and I don't need to use map
       const todo = state.todos.find((todo) => todo.id === action.payload);
       if (todo) {
         todo.isEdit = !todo.isEdit;
@@ -40,8 +50,21 @@ const todosSlice = createSlice({
         todo.task = action.payload.task;
       }
     },
+    updateSelectTodo: (
+      state,
+      action: PayloadAction<{ id: number; checked: boolean }>
+    ) => {
+      const todo = state.todos.find(
+        (todo) => todo.id === Number(action.payload.id)
+      );
+
+      if (todo) {
+        todo.completed = action.payload.checked;
+      }
+    },
   },
 });
 
-export const { addTodo, deleteTodo, toggleEdit, editTodo } = todosSlice.actions;
+export const { addTodo, deleteTodo, toggleEdit, editTodo, updateSelectTodo } =
+  todosSlice.actions;
 export default todosSlice.reducer;
