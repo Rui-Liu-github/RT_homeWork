@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TodoType {
   id: number;
@@ -9,18 +9,33 @@ interface TodoType {
 
 interface StateType {
   todos: TodoType[];
+  loading: boolean;
+  error: string | null;
 }
 
 const initialState: StateType = {
   todos: [
-    {
-      id: Date.now(),
-      task: "this is the first todo task,just as test",
-      isEdit: false,
-      completed: false,
-    },
+    // {
+    //   id: Date.now(),
+    //   task: "this is the first todo task,just as test",
+    //   isEdit: false,
+    //   completed: false,
+    // },
   ],
+  loading: false,
+  error: null,
 };
+
+export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
+  try {
+    const response = await fetch("http://localhost:8000/todos");
+    console.log("request todos success");
+    const data = await response.json();
+    return data;
+  } catch (error: any) {
+    return error.message;
+  }
+});
 
 const todosSlice = createSlice({
   name: "todos",
@@ -62,6 +77,25 @@ const todosSlice = createSlice({
         todo.completed = action.payload.checked;
       }
     },
+  },
+  //fetch data use extraReducers
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTodos.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        fetchTodos.fulfilled,
+        (state, action: PayloadAction<TodoType[]>) => {
+          state.loading = false;
+          state.todos = action.payload;
+        }
+      )
+      .addCase(fetchTodos.rejected, (state) => {
+        state.loading = false;
+        state.error = "Failed to fetch data todos";
+      });
   },
 });
 

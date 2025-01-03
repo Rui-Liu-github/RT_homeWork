@@ -1,7 +1,3 @@
-import React from "react";
-import { combineReducers } from "redux";
-const redux = require("redux");
-
 interface todosType {
   id: number;
   task: string;
@@ -70,7 +66,38 @@ function addNewTodo(task: string) {
   };
 }
 
-export const todoReduxReducer = (state = initialState, action: ActionType) => {
+// export const fetchDataRequest = () => ({
+//   type: FETCH_DATA_REQUEST,
+// });
+
+// export const fetchDataSuccess = (data) => ({
+//   type: FETCH_DATA_SUCCESS,
+//   payload: data,
+// });
+
+// export const fetchDataFailure = (error) => ({
+//   type: FETCH_DATA_FAILURE,
+//   payload: error,
+// });
+// export const fetchData = () => {
+//   return async (dispatch) => {
+//     dispatch(fetchDataRequest());
+//     try {
+//       const response = await fetch(
+//         "https://jsonplaceholder.typicode.com/posts"
+//       );
+//       const data = await response.json();
+//       dispatch(fetchDataSuccess(data));
+//     } catch (error) {
+//       dispatch(fetchDataFailure(error.message));
+//     }
+//   };
+// };
+
+export default function todoReduxReducer(
+  state = initialState,
+  action: ActionType
+) {
   switch (action.type) {
     case ACTIONS.ADD_TODO_TASK:
       return [...state.todos, addNewTodo(action.payload)];
@@ -95,11 +122,10 @@ export const todoReduxReducer = (state = initialState, action: ActionType) => {
     default:
       return state;
   }
-};
+}
 
 // const rootReducer = combineReducers({
 //   todos: todoReduxOriginal,
 // });
 
 export { addToDoTask, deleteTask, editTask, updateTask };
-export default todoReduxReducer;

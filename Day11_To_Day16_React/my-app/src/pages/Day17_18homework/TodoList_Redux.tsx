@@ -1,6 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../store/index";
+import { RootState, AppDispatch } from "../../store/index";
 
 import {
   addTodo,
@@ -10,6 +10,7 @@ import {
   updateSelectTodo,
 } from "../Day17_18homework/todosSlice";
 
+import { fetchTodos } from "../Day17_18homework/todosSlice";
 // import {
 //   addToDoTask,
 //   deleteTask,
@@ -25,14 +26,21 @@ const TodoList_Redux: FC = () => {
   //rootState is the top level state
   //rootState {todos, ...}
 
-  const todos = useSelector((state: RootState) => state.todos.todos);
-  const dispatch = useDispatch();
+  const { todos, loading, error } = useSelector(
+    (state: RootState) => state.todos
+  );
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(addTodo(task));
     // dispatch(addToDoTask(task));
     setTask(""); // Clear input after adding a task
+    console.log(todos);
   };
 
   const handleDelete = (id: number) => {
@@ -96,6 +104,8 @@ const TodoList_Redux: FC = () => {
       </form>
       {/* Render Todos */}
       <div className="list">
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
         {todos.map((todo) => (
           <div
             key={todo.id}
